@@ -1,0 +1,360 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+$primary-red: #a10000;
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  color: white;
+}
+
+@mixin gen-container {
+  width: 100%;
+  padding: 3rem;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin basic-shadow {
+  -webkit-box-shadow: 3px 3px 4px 0px rgba(58, 58, 58, 0.76);
+  -moz-box-shadow: 3px 3px 4px 0px rgba(58, 58, 58, 0.76);
+  box-shadow: 3px 3px 4px 0px rgba(58, 58, 58, 0.76);
+}
+
+@mixin red-button-style {
+  color: white;
+  padding: 1em 3em;
+  background-color: $primary-red;
+  border-radius: 0.7rem;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($primary-red, 10%);
+  }
+
+  @include basic-shadow;
+}
+
+.container-fullscreen {
+  @include gen-container;
+  padding: 0;
+
+  background-color: rgba(32, 32, 32, 0.603);
+  background-image: url("./img/jean-philippe-delberghe-9XAnXWHu9_4-unsplash.jpg");
+  background-blend-mode: darken;
+  background-size: cover;
+
+  .hero-img-overlay {
+    background-color: rgba(black, 0.6);
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  h1 {
+    max-width: 60%;
+    text-align: center;
+  }
+  .user-info-placeholder {
+    display: flex;
+    align-self: flex-end;
+    align-items: center;
+
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    z-index: 996;
+
+    .user-welcome {
+      color: white;
+    }
+
+    .signin-signup-btn,
+    .exit-icon {
+      text-decoration: none;
+      display: inline-block;
+      padding: 0.4em 2em;
+      color: white;
+      border: 2px solid white;
+      margin-left: 2rem;
+
+      &:hover {
+        background-color: white;
+        color: black;
+      }
+    }
+  }
+
+  .browse-btn {
+    position: absolute;
+    display: inline-block;
+    bottom: 20%;
+    text-decoration: none;
+    z-index: 996;
+    @include red-button-style;
+  }
+}
+
+.container-signin-signup {
+  @include gen-container;
+  justify-content: center;
+
+  background-image: url("./img/pattern_geometric-4_1_2_0-0_0_1__ffffff_ededed.png");
+  background-size: contain;
+
+  .form-container {
+    @include basic-shadow;
+    width: 35%;
+    background-color: white;
+    padding: 3rem;
+    border-radius: 0.7rem;
+
+    .signin-form,
+    .signup-form {
+      display: flex;
+      flex-direction: column;
+
+      .form-error,
+      .gen-form-error {
+        font-size: 0.7rem;
+        color: grey;
+        margin-top: 0.7rem;
+      }
+
+      .gen-form-error {
+        color: red;
+      }
+
+      input {
+        margin-top: 0.5rem;
+        font-size: 1rem;
+        padding: 0.4em;
+        border: 1px solid grey;
+        border-radius: 0.5rem;
+      }
+
+      label {
+        margin-top: 1.4rem;
+        font-size: 0.9rem;
+      }
+
+      button {
+        margin-top: 1.4rem;
+        border: none;
+
+        @include red-button-style;
+      }
+    }
+
+    .back-home {
+      display: inline-block;
+      color: $primary-red;
+      text-align: center;
+      margin-top: 1.4rem;
+    }
+  }
+}
+
+.browse-container {
+  background-color: lightgray;
+  @include gen-container;
+  padding: 0;
+
+  .menu {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 996;
+    background-color: $primary-red;
+    .menu-list {
+      display: flex;
+
+      .menu-list-item {
+        list-style: none;
+        display: flex;
+        align-items: center;
+
+        a {
+          color: white;
+          display: inline-block;
+          margin: 1rem 3rem;
+          text-decoration: none;
+
+          &:hover {
+            color: black;
+          }
+        }
+
+        &:first-child {
+          flex-grow: 1;
+        }
+      }
+    }
+  }
+
+  .cards-container {
+    min-height: 100vh;
+    min-width: 50%;
+    max-width: 80%;
+
+    padding: 2rem;
+    margin: 0 auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1rem;
+    row-gap: 1rem;
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(black, 0.7);
+      z-index: 997;
+      overflow: hidden;
+
+      .popup {
+        position: absolute;
+        background-color: white;
+        padding: 2rem;
+        width: 30%;
+        top: 50%;
+        left: 50%;
+        border-radius: 0.7rem;
+        transform: translate(-50%, -50%);
+
+        p {
+          margin-top: 0.4rem;
+          line-height: 1.6;
+
+          span {
+            font-weight: 700;
+          }
+        }
+
+        a {
+          display: inline-block;
+          margin: 0 auto;
+          margin-top: 0.8rem;
+          text-align: center;
+        }
+      }
+    }
+
+    .sep-card {
+      position: relative;
+      width: 46%;
+      height: 400px;
+      border-radius: 0.7rem;
+
+      @include basic-shadow;
+
+      h3 {
+        position: absolute;
+        color: white;
+        left: 50%;
+        top: 5%;
+        transform: translate(-50%);
+      }
+
+      .card-info {
+        position: absolute;
+        padding: 0.7rem;
+        top: 70%;
+        width: 100%;
+        min-height: 30%;
+        border-radius: 0 0 0.7rem 0.7rem;
+        background-color: white;
+
+        p {
+          margin-top: 0.3rem;
+
+          span {
+            font-weight: bold;
+          }
+        }
+
+        a {
+          position: absolute;
+          right: 1rem;
+          bottom: 1rem;
+        }
+      }
+
+      img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 0.7rem;
+      }
+    }
+  }
+}
+
+.swiper-container {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: $primary-red;
+
+    &hover {
+      color: darken($primary-red, 10%);
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (max-width: 420px) {
+  .container-fullscreen {
+    h1 {
+      width: 86%;
+    }
+  }
+
+  .container-signin-signup {
+    .form-container {
+      width: 90%;
+    }
+  }
+
+  .browse-container {
+    .cards-container {
+      padding: 1rem 0;
+      max-width: 94%;
+    }
+  }
+
+  .sep-card {
+    width: 48%;
+  }
+}
